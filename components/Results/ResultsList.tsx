@@ -18,23 +18,35 @@ const ResultsList: React.FC = () => {
       ) : (
         <div>
           {data.company && (
-            <div className="flex">
-              <div className="flex-1">
-                <span className={s.smallTitle}>Company</span>
-                <h3 className="text-xl font-bold">{data.company.name}</h3>
-                <div>NIP: {data.company.nip}</div>
-                <div>REGON: {data.company.regon}</div>
-              </div>
-              <div className="flex-1">
-                <span className={s.smallTitle}>PKD</span>
-                {data.company.pkds.map((pkd: any, i: number) => (
-                  <div
-                    key={pkd.code}
-                    className={cn({ "font-semibold": i === 0 }, "text-sm")}
-                  >
-                    {pkd.code}. {pkd.desc}
+            <div>
+              <h3 className="text-xl font-bold text-blue-700">
+                {data.company.name}
+              </h3>
+              <div className="flex text-sm">
+                <div className="flex-1">
+                  <span className={s.smallTitle}>Company</span>
+                  <div>NIP: {data.company.nip}</div>
+                  <div>REGON: {data.company.regon}</div>
+                  <div>{data.company.address}</div>
+                  <div>
+                    {data.company.zip} {data.company.city}
                   </div>
-                ))}
+                  <div>
+                    Założono:{" "}
+                    {new Date(data.company.established).toLocaleDateString()} r.
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <span className={s.smallTitle}>PKD</span>
+                  {data.company.pkds.map((pkd: any, i: number) => (
+                    <div
+                      key={pkd.code}
+                      className={cn({ "font-semibold": i === 0 })}
+                    >
+                      {pkd.code}. {pkd.desc}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}
