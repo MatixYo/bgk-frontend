@@ -1,0 +1,7 @@
+.root {
+    @apply cursor-pointer;
+}
+
+.title {
+    @apply text-lg underline;
+}

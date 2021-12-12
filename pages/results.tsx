@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import fetcher from "@lib/fetcher";
 import Loading from "@components/icons/Loading";
+import Result from "@components/Results/Result";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -26,10 +27,10 @@ const Home: NextPage = () => {
             <Loading className="animate-spin w-12 mx-auto my-8" />
           ) : (
             <div>
-              Wyniki wyszukiwania: {q}
-              <ul>
+              <span className="text-gray-500">Wyniki wyszukiwania: {q}</span>
+              <ul className="mt-4 space-y-4">
                 {data.map((item: any) => (
-                  <li key={item}>{item}</li>
+                  <Result key={item} item={item} />
                 ))}
               </ul>
             </div>
