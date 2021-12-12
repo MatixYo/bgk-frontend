@@ -1,7 +1,8 @@
-import { FC, memo, useEffect } from "react";
+import { FC, memo } from "react";
 import cn from "classnames";
 import s from "./Searchbar.module.css";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 interface Props {
   className?: string;
@@ -29,7 +30,7 @@ const Searchbar: FC<Props> = ({ className, id = "search" }) => {
   };
 
   return (
-    <div className="flex">
+    <motion.div className="flex" layoutId="search">
       <div className={cn(s.root, className)}>
         <label className="hidden" htmlFor={id}>
           Search
@@ -52,7 +53,7 @@ const Searchbar: FC<Props> = ({ className, id = "search" }) => {
           Find
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

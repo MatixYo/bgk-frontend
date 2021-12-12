@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Searchbar from "@components/Searchbar";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Home: NextPage = () => {
   return (
@@ -14,9 +15,9 @@ const Home: NextPage = () => {
 
       <main className="min-h-screen flex items-center justify-center">
         <div className="-mt-12">
-          <div className="mb-8">
+          <motion.div className="mb-8" layoutId="logo">
             <Image src="/logo.png" alt="logo" width={302} height={48} />
-          </div>
+          </motion.div>
           <Searchbar />
         </div>
       </main>

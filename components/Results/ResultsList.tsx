@@ -25,7 +25,9 @@ const ResultsList: React.FC = () => {
               <div>REGON: {data.company.regon}</div>
             </div>
           )}
-          <div className="text-gray-500 mt-6">Showing results for {q}</div>
+          <div className="text-gray-500 mt-6">
+            Showing results for {data.wordsList.join(" ")}
+          </div>
           <ul className="mt-2 space-y-4">
             {data.rows.map((item: any) => (
               <Result key={item} item={item} />

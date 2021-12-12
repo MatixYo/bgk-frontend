@@ -4,6 +4,8 @@ import Searchbar from "@components/Searchbar";
 import { useRouter } from "next/router";
 import ResultsList from "@components/Results/ResultsList";
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -17,10 +19,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen p-32">
-        <div className="mb-8 flex justify-center">
-          <Image src="/logo.png" alt="logo" width={302} height={48} />
-        </div>
+      <main className="min-h-screen p-24">
+        <Link href="/">
+          <motion.a
+            className="mb-8 flex justify-center cursor-pointer"
+            layoutId="logo"
+          >
+            <Image src="/logo.png" alt="logo" width={302} height={48} />
+          </motion.a>
+        </Link>
         <Searchbar className="mx-auto" />
         <ResultsList />
       </main>
