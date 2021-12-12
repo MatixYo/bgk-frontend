@@ -4,10 +4,12 @@ import React from "react";
 const Result: React.FC<{ item: any }> = ({ item }) => {
   return (
     <li className={s.result}>
-      <div
-        className={s.title}
-        dangerouslySetInnerHTML={{ __html: item.content }}
-      />
+      <a href={item.url} target="_blank" rel="noreferrer">
+        <div
+          className={s.title}
+          dangerouslySetInnerHTML={{ __html: item.content }}
+        />
+      </a>
     </li>
   );
 };

@@ -5,6 +5,7 @@ import useSWR from "swr";
 import fetcher from "@lib/fetcher";
 import cn from "classnames";
 import s from "./Result.module.css";
+import FeResult from "@components/Results/FeResult";
 
 const ResultsList: React.FC = () => {
   const router = useRouter();
@@ -15,13 +16,11 @@ const ResultsList: React.FC = () => {
     <div className="px-4">
       {!data ? (
         <Loading className="animate-spin w-12 mx-auto my-8" />
-      ) : !data.rows.length ? (
-        <div>No results</div>
       ) : (
         <div className="w-full">
           {data.company && (
-            <div>
-              <h3 className="text-xl font-bold text-blue-700">
+            <div className={s.company}>
+              <h3 className="text-xl font-bold text-blue-600">
                 {data.company.name}
               </h3>
               <div className="flex text-sm">
@@ -70,12 +69,16 @@ const ResultsList: React.FC = () => {
               </div>
             </div>
           )}
-          <div className="text-gray-500 mt-6">
-            Showing results for <i>{data.wordsList.join(" ")}</i>
+          <div className="text-gray-500 mt-6 text-sm">
+            Showing results for <i>{data.wordsList.join(", ")}</i>
           </div>
-          <ul className="mt-2 space-y-4">
+          {!data.rows.length && !data.feRows.length && <div>No results</div>}
+          <ul className={s.list}>
+            {data.feRows.slice(0, 3).map((row: any) => (
+              <FeResult key={row.name} item={row} />
+            ))}
             {data.rows.map((item: any) => (
-              <Result key={item} item={item} />
+              <Result key={item.content} item={item} />
             ))}
           </ul>
         </div>

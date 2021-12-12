@@ -1,5 +1,13 @@
+.list {
+    @apply mt-2 space-y-4;
+}
+
 .container {
-    @apply w-full max-w-2xl space-y-8 pt-24 pb-8 px-4 mx-auto;
+    @apply w-full max-w-2xl space-y-4 pt-24 pb-8 px-4 mx-auto;
+}
+
+.company {
+    @apply p-4 text-sm text-base w-full transition-colors duration-150 border border-gray-300 rounded-md shadow-sm bg-white;
 }
 
 .logo {
@@ -14,9 +22,13 @@
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+.feResult {
+    composes: result;
+    @apply max-h-20 overflow-hidden;
+}
 
 .title {
-    @apply text-lg underline;
+    @apply text-lg underline truncate;
 }
 
 .smallTitle {
