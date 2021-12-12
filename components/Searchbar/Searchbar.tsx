@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, memo, useRef } from "react";
 import cn from "classnames";
 import s from "./Searchbar.module.css";
 import { useRouter } from "next/router";
@@ -11,22 +11,33 @@ interface Props {
 
 const Searchbar: FC<Props> = ({ className, id = "search" }) => {
   const router = useRouter();
+  const inputRef = useRef<any>(null);
+
+  const handleSubmit = (q: string) => {
+    router.push(
+      {
+        pathname: `/results`,
+        query: q ? { q } : {},
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     if (e.key === "Enter") {
       const q = e.currentTarget.value;
-
-      router.push(
-        {
-          pathname: `/results`,
-          query: q ? { q } : {},
-        },
-        undefined,
-        { shallow: true }
-      );
+      handleSubmit(q);
     }
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    const q = inputRef.current?.value;
+    handleSubmit(q);
   };
 
   return (
@@ -40,9 +51,10 @@ const Searchbar: FC<Props> = ({ className, id = "search" }) => {
           className={s.input}
           placeholder="Search by NIP, PKD or phrase"
           defaultValue={router.query.q}
+          ref={inputRef}
           onKeyUp={handleKeyUp}
         />
-        <div className={s.iconContainer}>
+        <div className={s.iconContainer} onClick={handleClick}>
           <svg className={s.icon} fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"

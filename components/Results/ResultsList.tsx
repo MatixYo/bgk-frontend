@@ -99,11 +99,11 @@ const ResultsList: React.FC = () => {
           </div>
           {!data.rows.length && !data.feRows.length && <div>No results</div>}
           <ul className={s.list}>
-            {data.feRows.slice(0, 3).map((row: any) => (
-              <FeResult key={row.name} item={row} />
+            {data.feRows.slice(0, 3).map((row: any, i: number) => (
+              <FeResult key={i} item={row} />
             ))}
-            {data.rows.map((item: any) => (
-              <Result key={item.content} item={item} />
+            {data.rows.map((item: any, i: number) => (
+              <Result key={i} item={item} />
             ))}
           </ul>
         </div>
