@@ -36,5 +36,5 @@
 }
 
 .credit {
-    @apply block mt-3 py-1 px-3 bg-blue-500 rounded-md text-lg font-semibold text-gray-100;
+    @apply block mt-3 py-2 px-3 bg-blue-500 rounded-md text-gray-100 border border-gray-300;
 }

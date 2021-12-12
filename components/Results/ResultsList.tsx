@@ -89,7 +89,7 @@ const ResultsList: React.FC = () => {
                   rel="noreferrer"
                   className={s.credit}
                 >
-                  Weź kredycik
+                  You can apply for a low-interest loan at ARP. Read more here.
                 </a>
               )}
             </div>
