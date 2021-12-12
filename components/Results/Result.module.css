@@ -5,3 +5,7 @@
 .title {
     @apply text-lg underline;
 }
+
+.smallTitle {
+    @apply uppercase tracking-wide text-xs font-black;
+}

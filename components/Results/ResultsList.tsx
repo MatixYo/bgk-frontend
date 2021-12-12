@@ -3,6 +3,8 @@ import Result from "@components/Results/Result";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import fetcher from "@lib/fetcher";
+import cn from "classnames";
+import s from "./Result.module.css";
 
 const ResultsList: React.FC = () => {
   const router = useRouter();
@@ -16,17 +18,28 @@ const ResultsList: React.FC = () => {
       ) : (
         <div>
           {data.company && (
-            <div>
-              <span className="uppercase tracking-wide text-xs font-black">
-                Company
-              </span>
-              <h3 className="text-xl font-bold">{data.company.name}</h3>
-              <div>NIP: {data.company.nip}</div>
-              <div>REGON: {data.company.regon}</div>
+            <div className="flex">
+              <div className="flex-1">
+                <span className={s.smallTitle}>Company</span>
+                <h3 className="text-xl font-bold">{data.company.name}</h3>
+                <div>NIP: {data.company.nip}</div>
+                <div>REGON: {data.company.regon}</div>
+              </div>
+              <div className="flex-1">
+                <span className={s.smallTitle}>PKD</span>
+                {data.company.pkds.map((pkd: any, i: number) => (
+                  <div
+                    key={pkd.code}
+                    className={cn({ "font-semibold": i === 0 }, "text-sm")}
+                  >
+                    {pkd.code}. {pkd.desc}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
           <div className="text-gray-500 mt-6">
-            Showing results for {data.wordsList.join(" ")}
+            Showing results for <i>{data.wordsList.join(" ")}</i>
           </div>
           <ul className="mt-2 space-y-4">
             {data.rows.map((item: any) => (
