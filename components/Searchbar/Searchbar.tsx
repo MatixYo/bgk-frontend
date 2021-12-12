@@ -53,6 +53,7 @@ const Searchbar: FC<Props> = ({ className, id = "search" }) => {
           defaultValue={router.query.q}
           ref={inputRef}
           onKeyUp={handleKeyUp}
+          autoComplete="off"
         />
         <div className={s.iconContainer} onClick={handleClick}>
           <svg className={s.icon} fill="currentColor" viewBox="0 0 20 20">
