@@ -5,7 +5,9 @@ import { useRouter } from "next/router";
 import ResultsList from "@components/Results/ResultsList";
 import Image from "next/image";
 import Link from "next/link";
+import s from "@components/Results/Result.module.css";
 import { motion } from "framer-motion";
+import cn from "classnames";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -19,7 +21,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen p-24">
+      <main className={cn("min-h-screen", s.container)}>
         <Link href="/">
           <motion.a
             className="mb-8 flex justify-center cursor-pointer"

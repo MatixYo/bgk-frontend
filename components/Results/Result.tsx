@@ -3,7 +3,7 @@ import React from "react";
 
 const Result: React.FC<{ item: any }> = ({ item }) => {
   return (
-    <li className={s.root}>
+    <li className={s.result}>
       <div
         className={s.title}
         dangerouslySetInnerHTML={{ __html: item.content }}

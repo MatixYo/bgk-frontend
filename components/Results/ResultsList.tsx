@@ -12,11 +12,13 @@ const ResultsList: React.FC = () => {
   const { data } = useSWR(`/search?q=${q ?? ""}`, fetcher);
 
   return (
-    <div className="my-4 max-w-lg mx-auto">
+    <div className="px-4">
       {!data ? (
         <Loading className="animate-spin w-12 mx-auto my-8" />
+      ) : !data.rows.length ? (
+        <div>No results</div>
       ) : (
-        <div>
+        <div className="w-full">
           {data.company && (
             <div>
               <h3 className="text-xl font-bold text-blue-700">
@@ -24,24 +26,24 @@ const ResultsList: React.FC = () => {
               </h3>
               <div className="flex text-sm">
                 <div className="flex-1">
-                  <span className={s.smallTitle}>Company</span>
-                  <div>NIP: {data.company.nip}</div>
-                  <div>REGON: {data.company.regon}</div>
-                  <div>{data.company.address}</div>
-                  <div>
+                  <span className={s.smallTitle}>Data</span>
+                  <p>REGON: {data.company.regon}</p>
+                  <p>NIP: {data.company.nip}</p>
+                  <p>{data.company.address}</p>
+                  <p>
                     {data.company.zip} {data.company.city}
-                  </div>
-                  <div>
+                  </p>
+                  <p>
                     Założono:{" "}
                     {new Date(data.company.established).toLocaleDateString()} r.
-                  </div>
+                  </p>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 overflow-hidden">
                   <span className={s.smallTitle}>PKD</span>
                   {data.company.pkds.map((pkd: any, i: number) => (
                     <div
                       key={pkd.code}
-                      className={cn({ "font-semibold": i === 0 })}
+                      className={cn({ "font-semibold": i === 0 }, "truncate")}
                     >
                       {pkd.code}. {pkd.desc}
                     </div>

@@ -1,5 +1,18 @@
-.root {
+.container {
+    @apply w-full max-w-2xl space-y-8 pt-24 pb-8 px-4 mx-auto;
+}
+
+.logo {
+    @apply text-center;
+}
+
+.result {
     @apply cursor-pointer;
+    animation: fadein 0.5s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .title {
