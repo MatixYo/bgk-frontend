@@ -27,8 +27,26 @@ const ResultsList: React.FC = () => {
               <div className="flex text-sm">
                 <div className="flex-1">
                   <span className={s.smallTitle}>Data</span>
-                  <p>REGON: {data.company.regon}</p>
-                  <p>NIP: {data.company.nip}</p>
+                  <p>
+                    REGON:
+                    <span
+                      className={cn({
+                        "underline font-bold": q === data.company.regon,
+                      })}
+                    >
+                      {data.company.regon}
+                    </span>
+                  </p>
+                  <p>
+                    NIP:{" "}
+                    <span
+                      className={cn({
+                        "underline font-bold": q === data.company.nip,
+                      })}
+                    >
+                      {data.company.nip}
+                    </span>
+                  </p>
                   <p>{data.company.address}</p>
                   <p>
                     {data.company.zip} {data.company.city}
