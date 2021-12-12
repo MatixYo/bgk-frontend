@@ -6,11 +6,26 @@ import fetcher from "@lib/fetcher";
 import cn from "classnames";
 import s from "./Result.module.css";
 import FeResult from "@components/Results/FeResult";
+import { useMemo } from "react";
+import Link from "next/link";
+
+function dateDifference(date: Date): number {
+  return (
+    new Date(new Date().getTime() - new Date(date).getTime()).getFullYear() -
+    1970
+  );
+}
 
 const ResultsList: React.FC = () => {
   const router = useRouter();
   const { q } = router.query;
-  const { data } = useSWR(`/search?q=${q ?? ""}`, fetcher);
+  const url = useMemo(() => `/search?q=${q ?? ""}`, [q]);
+  const { data } = useSWR(url, fetcher);
+
+  const showCredit = useMemo(
+    () => data?.company && dateDifference(data.company.established) >= 1,
+    [data]
+  );
 
   return (
     <div className="px-4">
@@ -51,7 +66,7 @@ const ResultsList: React.FC = () => {
                     {data.company.zip} {data.company.city}
                   </p>
                   <p>
-                    Założono:{" "}
+                    Est.:{" "}
                     {new Date(data.company.established).toLocaleDateString()} r.
                   </p>
                 </div>
@@ -67,6 +82,16 @@ const ResultsList: React.FC = () => {
                   ))}
                 </div>
               </div>
+              {showCredit && (
+                <a
+                  href="https://arp.pl/pl/dla-biznesu/finansowanie/parametryzator/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={s.credit}
+                >
+                  Weź kredycik
+                </a>
+              )}
             </div>
           )}
           <div className="text-gray-500 mt-6 text-sm">

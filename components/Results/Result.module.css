@@ -34,3 +34,7 @@
 .smallTitle {
     @apply uppercase tracking-wide text-xs font-black;
 }
+
+.credit {
+    @apply block mt-3 py-1 px-3 bg-blue-500 rounded-md text-lg font-semibold text-gray-100;
+}
