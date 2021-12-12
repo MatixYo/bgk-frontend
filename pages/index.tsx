@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Searchbar from "@components/Searchbar";
+import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +13,12 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="min-h-screen flex items-center justify-center">
-        <Searchbar />
+        <div className="-mt-12">
+          <div className="mb-8">
+            <Image src="/logo.png" alt="logo" width={302} height={48} />
+          </div>
+          <Searchbar />
+        </div>
       </main>
     </div>
   );
